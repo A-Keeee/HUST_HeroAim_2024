@@ -1,6 +1,6 @@
 # find_package(Pangolin REQUIRED)
 find_package(Ceres REQUIRED)
-LIST(APPEND CMAKE_MODULE_PATH /home/nvidia/g2o/cmake_modules)
+LIST(APPEND CMAKE_MODULE_PATH /home/qianli/g2o/cmake_modules)
 cmake_policy(SET CMP0074 NEW)
 
 SET(G2O_ROOT /usr/local/include/g2o)

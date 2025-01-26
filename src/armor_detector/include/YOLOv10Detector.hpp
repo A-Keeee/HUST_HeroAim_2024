@@ -11,6 +11,11 @@
 
 #include <opencv2/opencv.hpp>
 #include <openvino/openvino.hpp>
+#include <openvino/core/preprocess/color_format.hpp>
+#include <openvino/core/preprocess/pre_post_process.hpp>
+
+
+
 
 using namespace cv;
 using namespace std;

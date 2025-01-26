@@ -50,3 +50,4 @@
    - 第 6 行添加 `"set(Sophus_DIR /path/to/source/code/Sophus)"`
    - 第 6 行添加 `"list(APPEND CMAKE_MODULE_PATH /path/to/source/code/g2o/cmake_modules/)"`
 2. 打开 `./src/utils/include/Config.h` 文件，将第 11 行第 11 处 `"jsoncpp/json/json.h"` 修改为 `"json/json.h"`
+<!-- cd .. && rm -rf build && mkdir build && cd build && cmake .. && make -j8 && ./AutoAim -->

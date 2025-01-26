@@ -1,13 +1,13 @@
 {
   "#camera": "包括 设备类型(0代表大恒相机), sn码(相机的唯一识别码), video_path(内录视频的保存地址), picture_path(内录装甲板图片的保存地址), size(图片的大小)",
   "camera": {
-    "device_type": 0,
+    "device_type": 3, 
     "sn": "FDN*********",
     "video_path": "../src/utils/data/videos/red7.avi",
     "picture_path": "../src/utils/data/pictures/armors/",
     "size": {
-      "height": 1024,
-      "width": 1280
+      "height": 1080,
+      "width": 1440
     },
     "#camera_type": "8 代表指定使用8mm的相机, 其余值表示普通相机",
     "camera_type": 8,

@@ -3,6 +3,7 @@
 //
 
 #include "Log.h"
+#include <iostream>
 
 using namespace ly;
 using namespace google;

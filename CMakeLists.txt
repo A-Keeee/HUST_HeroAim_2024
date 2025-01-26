@@ -3,7 +3,10 @@ project(AutoAim)
 
 # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2")
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
+list(APPEND CMAKE_MODULE_PATH /path/to/source/code/g2o/cmake_modules/)
+set(Sophus_DIR /path/to/source/code/Sophus)
 set(CMAKE_CXX_STANDARD 17)
+
 
 set(CMAKE_PREFIX_PATH "/usr/local/include/opencv4/")
 set(OpenCV_DIR /usr/local/include/opencv4/)

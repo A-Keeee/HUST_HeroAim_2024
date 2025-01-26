@@ -5,8 +5,8 @@
 #ifndef AUTOAIM_VIDEOCAPTURE_H
 #define AUTOAIM_VIDEOCAPTURE_H
 
+#include "/home/qianli/buff25/HUST_HeroAim_2024/src/driver/src/ros2-hik-camera-main/hikSDK/include/MvCameraControl.h"
 #include "opencv2/opencv.hpp"
-
 #include "Params.h"
 #include "Log.h"
 #include "SerialPort.h"
@@ -29,6 +29,7 @@ namespace ly
         DaHen,              // 大恒
         Video,              // 视频 debug
         Picture,            // 图片 debug
+        hik,                // 海康相机
     };
 
     // Image 包含了图像、时间戳以及imu数据       追求时钟同步
@@ -72,15 +73,15 @@ namespace ly
         void chooseCameraType(VideoCapture *&);
 
     protected:
-        double rate{};
+        double rate{};  // 帧率
         int _id;
         uint16_t height;
         uint16_t width;
         uint16_t offset_x;
         uint16_t offset_y;
 
-        pthread_t threadID{};
-        pthread_t threadID2{};
+        pthread_t threadID{};   // 捕获线程
+        pthread_t threadID2{};  // 写入线程
 
         Params_ToVideo _video_thread_params;
 
@@ -127,6 +128,40 @@ namespace ly
         string suffix;
         int id = 0;
     };
+
+    // 新增的 HikCamera 类
+    class HikCamera : public VideoCapture
+    {
+    public:
+        HikCamera();
+        ~HikCamera();
+        // void startCapture();
+        void startCapture(Params_ToVideo &) override;
+        void open() override;
+
+    private:
+        // 相机句柄
+        void* camera_handle_;
+
+        // 返回值
+        int nRet;
+
+        // 相机图像基本信息
+        MV_IMAGE_BASIC_INFO img_info_;
+
+        // 图像转换参数
+        MV_CC_PIXEL_CONVERT_PARAM convert_param_;
+
+        // 用于存储图像数据的缓冲区
+        char frame_data_[1920 * 1080 * 3];  // 假设 1080p 分辨率
+
+        // 连续失败次数，用于处理异常
+        int fail_count_;
+
+        // 捕获图像的线程
+        std::thread capture_thread_;
+    };
+
 }
 
 #endif //AUTOAIM_VIDEOCAPTURE_H

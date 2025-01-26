@@ -10,6 +10,8 @@
 
 //openvino
 #include <openvino/openvino.hpp>
+#include <openvino/core/preprocess/color_format.hpp>
+#include <openvino/core/preprocess/pre_post_process.hpp>
 
 //opencv
 #include <opencv2/imgcodecs.hpp>
