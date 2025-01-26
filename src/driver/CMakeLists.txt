@@ -25,18 +25,18 @@ add_library(driver
         src/hik.cpp
 )
 
-target_include_directories(driver PUBLIC src/ros2-hik-camera-main/hikSDK/include)
+target_include_directories(driver PUBLIC hikSDK/include)
 
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")
-  target_link_directories(driver PUBLIC src/ros2-hik-camera-main/hikSDK/lib/amd64)
+  target_link_directories(driver PUBLIC hikSDK/lib/amd64)
   install(
-    DIRECTORY src/ros2-hik-camera-main/hikSDK/lib/amd64/
+    DIRECTORY hikSDK/lib/amd64/
     DESTINATION lib
   )
 elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64")
-  target_link_directories(driver PUBLIC src/ros2-hik-camera-main/hikSDK/lib/arm64)
+  target_link_directories(driver PUBLIC hikSDK/lib/arm64)
   install(
-    DIRECTORY src/ros2-hik-camera-main/hikSDK/lib/arm64/
+    DIRECTORY hikSDK/lib/arm64/
     DESTINATION lib
   )
 else()

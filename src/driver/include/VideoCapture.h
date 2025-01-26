@@ -5,7 +5,7 @@
 #ifndef AUTOAIM_VIDEOCAPTURE_H
 #define AUTOAIM_VIDEOCAPTURE_H
 
-#include "/home/qianli/buff25/HUST_HeroAim_2024/src/driver/src/ros2-hik-camera-main/hikSDK/include/MvCameraControl.h"
+#include "/home/qianli/buff25/HUST_HeroAim_2024/src/driver/hikSDK/include/MvCameraControl.h"
 #include "opencv2/opencv.hpp"
 #include "Params.h"
 #include "Log.h"
@@ -129,6 +129,13 @@ namespace ly
         int id = 0;
     };
 
+
+    // 摄像头参数结构体
+    struct HikCameraParams
+    {
+        double exposure_time = 5000;  // 默认曝光时间
+        double gain = 16;             // 默认增益
+    };
     // 新增的 HikCamera 类
     class HikCamera : public VideoCapture
     {
@@ -138,8 +145,13 @@ namespace ly
         // void startCapture();
         void startCapture(Params_ToVideo &) override;
         void open() override;
+        void declareParameters(); 
+        void handleError();
+        HikCameraParams params_;  // 相机的参数
 
     private:
+        bool over = false;
+
         // 相机句柄
         void* camera_handle_;
 
@@ -153,13 +165,11 @@ namespace ly
         MV_CC_PIXEL_CONVERT_PARAM convert_param_;
 
         // 用于存储图像数据的缓冲区
-        char frame_data_[1920 * 1080 * 3];  // 假设 1080p 分辨率
+        unsigned char frame_data_[1440 * 1080 * 3];  // 假设 1080p 分辨率
 
         // 连续失败次数，用于处理异常
         int fail_count_;
 
-        // 捕获图像的线程
-        std::thread capture_thread_;
     };
 
 }
