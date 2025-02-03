@@ -20,7 +20,7 @@ using namespace ly;
 
 namespace ly{
     // 配置文件路径
-    const string confog_file_path = "../src/utils/tools/init.json";
+    const string config_file_path = "../src/utils/tools/init.json";
 }
 
 #endif //AUTOAIM_AUTOAIM_H

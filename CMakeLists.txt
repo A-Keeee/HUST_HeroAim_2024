@@ -49,8 +49,8 @@ add_executable(testArray
 
 target_link_libraries(AutoAim
         utils
-        driver
         armor_detector
+        driver
         ${OpenCV_LIBS}
         -lboost_system
         -lboost_filesystem
@@ -59,8 +59,8 @@ target_link_libraries(AutoAim
 
 target_link_libraries(train
        utils
-       driver
        armor_detector
+       driver
        ${Boost_LIBRARIES}
 #        ${InferenceEngine_LIBRARIES}
        ${OpenCV_LIBS}

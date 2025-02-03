@@ -10,6 +10,7 @@ include_directories(
         include
         ../utils/include
         ../armor_detector/include
+        ../driver/include
         ${OpenCV_INCLUDE_DIRS}
 )
 
