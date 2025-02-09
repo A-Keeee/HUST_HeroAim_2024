@@ -43,7 +43,8 @@ HikCamera::HikCamera() : camera_handle_(nullptr), fail_count_(0), over(false)
     // 初始化图像转换参数
     convert_param_.nWidth = img_info_.nWidthValue;
     convert_param_.nHeight = img_info_.nHeightValue;
-    convert_param_.enDstPixelType = PixelType_Gvsp_RGB8_Packed;
+    // convert_param_.enDstPixelType = PixelType_Gvsp_RGB8_Packed;
+    convert_param_.enDstPixelType = PixelType_Gvsp_BGR8_Packed;
     
 
     declareParameters();
@@ -217,12 +218,12 @@ void HikCamera::startCapture(Params_ToVideo &params_to_video) {
         // 检查当前帧的图像是否为空，避免后续操作时出错
         LOG_IF(ERROR, (*_video_thread_params.frame_pp)->mat->empty()) << "获取到空图像矩阵!";
 
-        // 显示图像，使用 OpenCV 显示当前帧
-        if ((*_video_thread_params.frame_pp)->mat != nullptr && !(*_video_thread_params.frame_pp)->mat->empty()) {
-            // 使用 OpenCV 显示图像，imshow 会显示在一个窗口中
-            cv::imshow("Hik Camera", *(*_video_thread_params.frame_pp)->mat);
-            cv::waitKey(1);  // 等待 1ms，处理显示更新并响应键盘输入
-        }
+        // // 显示图像，使用 OpenCV 显示当前帧
+        // if ((*_video_thread_params.frame_pp)->mat != nullptr && !(*_video_thread_params.frame_pp)->mat->empty()) {
+        //     // 使用 OpenCV 显示图像，imshow 会显示在一个窗口中
+        //     cv::imshow("Hik Camera", *(*_video_thread_params.frame_pp)->mat);
+        //     cv::waitKey(1);  // 等待 1ms，处理显示更新并响应键盘输入
+        // }
 
         // 释放当前帧的图像缓冲区
         MV_CC_FreeImageBuffer(camera_handle_, &out_frame);

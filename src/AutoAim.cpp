@@ -24,11 +24,11 @@ int main(int argc, char** argv){
     // 创建一个线程用于串口数据读取
     // thread serial_port_thread(&SerialPort::read_data, serial_port, ref(params_to_serial_port));
 
-    // /******* 初始化摄像头 ********/
-    // ly::VideoCapture* video;  // 创建视频捕获对象
-    // video->chooseCameraType(video);  // 选择摄像头类型
-    // // 创建一个线程用于视频捕获
-    // thread video_thread(&ly::VideoCapture::startCapture, video, ref(params_to_video));
+    /******* 初始化摄像头 ********/
+    ly::VideoCapture* video;  // 创建视频捕获对象
+    video->chooseCameraType(video);  // 选择摄像头类型
+    // 创建一个线程用于视频捕获
+    thread video_thread(&ly::VideoCapture::startCapture, video, ref(params_to_video));
 
     /******* 初始化目标检测器 ********/
     auto detector = new Detector();  // 创建目标检测对象
@@ -46,7 +46,7 @@ int main(int argc, char** argv){
 
     // 等待所有线程完成
     // serial_port_thread.join();
-    // video_thread.join();
+    video_thread.join();
     // std::cout << "video_thread.join();" << std::endl;
     detector_thread.join();
     

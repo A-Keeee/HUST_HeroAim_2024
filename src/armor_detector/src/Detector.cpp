@@ -447,13 +447,18 @@ namespace ly
             // 每处理一张图片发送一次数据, SerialParam, 对于前哨站模式可能会增加
 
             DLOG(INFO) << "                                           recv yaw: " << SerialParam::recv_data.yaw << "  recv pitch: " << SerialParam::recv_data.pitch<<" recv roll: "<<SerialParam::recv_data.roll;
-//            getTarget = false;
+
+
+            getTarget = false;
+            // 发送数据
             if(getTarget){
                 DLOG(WARNING)<<"                         !!!!SEND";
                 DLOG(INFO) << "                                           send yaw: " << SerialParam::send_data.yaw << " send pitch: " << SerialParam::send_data.pitch;
 
                 SerialPort_->writeData(&SerialParam::send_data);
             }
+
+
             if (GlobalParam::DEBUG_MODE)
             {   
                 // 前哨站模式或者半速前哨站模式
@@ -463,6 +468,8 @@ namespace ly
                     circle(drawing, center_pixel, 10, color,-1);
                 }
                 // 展示图像
+                namedWindow("frame", WINDOW_NORMAL);
+                resizeWindow("frame", 1440, 1080);
                 imshow("frame", drawing);
                 waitKey(1);
             }
